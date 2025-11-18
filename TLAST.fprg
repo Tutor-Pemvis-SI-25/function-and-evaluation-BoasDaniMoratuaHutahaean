@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="TLAST"/>
+        <attribute name="authors" value="boash"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-11-18 09.18.53 PM"/>
+        <attribute name="created" value="Ym9hc2g7SFVUQUhBRUFOOzIwMjUtMTEtMTg7MDguMjQuNTYgUE07MjQ0NQ=="/>
+        <attribute name="edited" value="Ym9hc2g7SFVUQUhBRUFOOzIwMjUtMTEtMTg7MDkuMTMuMDcgUE07MTtqdWxpdTtLQUlTQVI7MjAyMy0xMS0yMTswODo1MDozNiBQTTtFMDQuZnByZzs1NTg2"/>
+        <attribute name="edited" value="Ym9hc2g7SFVUQUhBRUFOOzIwMjUtMTEtMTg7MDkuMTguNTMgUE07MjsyNTU1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="deskripsitugas, kodematkul, dosen, deadline, nimnama, status, matkul, teks" type="String" array="True" size="10"/>
+            <declare name="tingkatkesulitan, prioritas" type="Real" array="True" size="10"/>
+            <declare name="harihinggadeadline" type="Integer" array="True" size="10"/>
+            <declare name="task" type="String" array="False" size=""/>
+            <declare name="i, n" type="Integer" array="False" size=""/>
+            <assign variable="n" expression="0"/>
+            <call expression="inisialisasi(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, tingkatkesulitan, harihinggadeadline, status, prioritas, teks)"/>
+            <for variable="i" start="0" end="9" direction="inc" step="1">
+                <input variable="task"/>
+                <if expression="task == &quot;Add task&quot;">
+                    <then>
+                        <assign variable="n" expression="Addtask(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, tingkatkesulitan, harihinggadeadline, status, prioritas, teks, i, n)"/>
+                    </then>
+                    <else>
+                        <if expression="task == &quot;Update task status&quot;">
+                            <then>
+                                <call expression="Updatetaskstatus(kodematkul, status, n)"/>
+                                <assign variable="i" expression="i - 1"/>
+                            </then>
+                            <else>
+                                <if expression="task == &quot;Show assigment&quot;">
+                                    <then>
+                                        <assign variable="i" expression="i - 1"/>
+                                    </then>
+                                    <else>
+                                        <if expression="task = &quot;---&quot;">
+                                            <then>
+                                                <assign variable="i" expression="10"/>
+                                            </then>
+                                            <else/>
+                                        </if>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <call expression="descending(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, tingkatkesulitan, harihinggadeadline, status, prioritas, teks, i, n)"/>
+            <call expression="output(deskripsitugas, kodematkul, matkul, dosen, deadline, nimnama, status, prioritas, teks, n)"/>
+        </body>
+    </function>
+</flowgorithm>
